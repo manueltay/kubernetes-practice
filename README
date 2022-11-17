@@ -1,0 +1,21 @@
+-- Pasos iniciales de kubernetes demos de pods, deployments, services
+En este documento se describen las bases de los ejercicios a realizar para la certificación de CKAD
+
+Estructura
+    demos
+        deployments
+            - 
+        docker
+        env values
+        namespaces
+        node afinity
+        node selectors
+        pod
+            - pod-definition.yml -- Unicamente la definición sencilla de un pod
+        replication-controller
+            - rc-definition.yml -- Unicamente la definición sencilla de un replica-controller
+        secrets
+        security
+        service-account
+        tains and tolerations
+    imperative-commands

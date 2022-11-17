@@ -1,0 +1,68 @@
+kubectl create configmap
+
+kubectl create -f
+
+kubectl create configmap
+  <config-name> --from-literal=<key>=<value>
+
+kubectl create configmap \ app-config --from-literal=APP_COLOR=blue \ 
+
+Result:
+
+  CONFIG MAP 
+  APP_COLOR: blue
+  APP_MODE: prod
+
+
+apiVersion: v1
+kind: ConfigMap
+metadata: 
+  name: app-config
+data:
+  APP_COLOR: blue
+  APP_MODE: prod
+
+kubectl get configmap
+
+inyect into pod
+
+----------------------------
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myapp-pod
+  labels: 
+    app: myapp
+    
+spec:
+  containers:
+    - name: nginx-container
+      image: nginx
+      ports:
+        - containerPort: 8080
+      envFrom:
+        - configMapRef:
+              name: app-config
+-----------------------------
+***** ENV ******
+
+envFrom:
+  - configMapRef:
+        name: app-config
+------------------------------
+***** SINGLE ENV *****
+
+env:
+  - name: APP_COLOR
+    valueFrom:
+      configMapKeyRef:
+        name: app-config
+        key: APP_COLOR
+------------------------------
+***** VOLUME *****
+
+volumes:
+- name: app-config-volume
+  configMap: 
+    name: app-config
+------------------------------

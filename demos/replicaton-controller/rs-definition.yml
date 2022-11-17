@@ -1,0 +1,29 @@
+apiVersion: apps/v1 #Version distinta si no se pone se pisa
+kind: ReplicaSet
+metadata:
+  name: myapp-replicaset
+  labels:
+      app: myapp
+      type: front-end 
+
+spec:
+  template:
+    metadata:
+      name: myapp-pod
+      labels: 
+        app: myapp
+        type: front-end # Tagear el label pa que lo encuentre con el selector
+    spec:
+      containers:
+        - name: nginx-container
+          image: nginx
+  replicas: 3 # cantidad de replicas que se van a hacer
+  selector: # Por que puede agarrar pods que fueron creados en otro lado diferencia entre controller y replica set
+    matchLabels: 
+      type: front-end # Significa que va a agarrar todos los pods que sean de tipo front-end incluso los que ya existian
+
+# Actualizar replicaset kubectl replace -f 
+# kubectl scale --replicas=6 replicaset myapp-replicaset ESTO NO ACTUALIZA EL DOCUMENTO
+# kubectl create -f replica-set.yml
+# kubectl delete replicaset myapp-replicaset
+# kubectl 

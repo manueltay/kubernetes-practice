@@ -1,0 +1,19 @@
+# metric server <-- only
+# prometheus
+# elastic stack
+# datadog
+# dynatrace
+
+# heapster --deprecated
+# now metric-server
+
+# kubelet cAdvisor 
+# minikube addons enable metrics-server
+
+# git clone metric server
+
+# k create deploy/1.8
+
+# kubectl top node
+
+# kubectl top pod

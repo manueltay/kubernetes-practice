@@ -1,0 +1,21 @@
+1. docker run ubuntu 
+2. docker ps
+3. docker ps -a
+
+// containers are not meant to run a os
+
+CMD['nginx'] -- command that should be execute
+
+docker run ubuntu sleep 5
+
+docker sleeper
+FROM ubuntu
+
+CMD sleep 5
+
+docker sleeper [command]
+
+FROM ubuntu
+
+ENTRYPOINT ["sleep"]
+

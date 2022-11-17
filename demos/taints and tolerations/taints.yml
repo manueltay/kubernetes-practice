@@ -1,0 +1,30 @@
+#kubectl taint nodes node-name key=value:taint-effect
+
+#kubectl taint nodes node1 app=blue:NoSchedule
+
+#To remove
+#kubectl taint nodes node1 app=blue:NoSchedule-
+
+#kubectl taint nodes node1 app= blue:NoSchedule
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myapp-pod
+  labels: 
+    app: myapp
+    
+spec:
+  containers:
+    - name: nginx-container
+      image: nginx
+  
+  tolerations:
+  - key: "app"
+    operator: "Equal"
+    value: "blue"
+    effect: "NoSchedule"
+
+# "Node afinity"
+
+#kubecetl describe kubemaster | grep Taint

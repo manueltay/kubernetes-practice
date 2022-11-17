@@ -1,0 +1,20 @@
+# docker run -d kodekloud/event
+
+# docker logs -f efc
+
+# kubectl logs -f event-simulator-pod nginx-container
+# kubectl logs -f <pod> <container>
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myapp-pod
+  labels: 
+    app: myapp
+    
+spec:
+  containers:
+    - name: nginx-container
+      image: nginx
+    - name: image-processor
+      image: some-image-processor

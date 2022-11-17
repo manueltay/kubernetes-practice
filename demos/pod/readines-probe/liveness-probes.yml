@@ -1,0 +1,51 @@
+# docker run nginx
+# fails
+# docker ps -a
+# you have to manually create a new
+
+# kubernetes creates one
+
+# what if its not working but it seems that it is still alive
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myapp-pod
+  labels: 
+    app: myapp
+    
+spec:
+  containers:
+    - name: nginx-container
+      image: nginx
+      ports:
+        - containerPort: 8080
+      # for http 
+      livenessProbe:
+        httpGet:
+          path: /api/ready
+          port: 8080
+        initialDelaySeconds: 10
+        periodSeconds: 5
+        failureThreshold: 8
+      # for tcp
+      livenessProbe:
+        tcpSocket:
+          port: 3306
+      # exec command
+      livenessProbe:
+        exec:
+          command:
+            - cat
+            - /app/is_ready
+
+    livenessProbe:
+      httpGet:
+        path: /live
+        port: 8080
+    livenessProbe:
+      httpGet:
+          path: /live
+          port: 8080
+          scheme: HTTP
+        initialDelaySeconds: 80
+        periodSeconds: 1

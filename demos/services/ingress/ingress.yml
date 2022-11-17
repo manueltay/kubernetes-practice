@@ -1,0 +1,59 @@
+# application my-onlinestore.com
+# deployed docker
+# mysql 
+# connected through clusterip
+# accesible to the outside of type nodeport 38080
+
+# configure dns to use the www
+# you only can use the port
+
+# use an additional server proxy
+
+# if you were on gcp
+# select gcp load balancer
+# gcp gives you an ip
+# set the dns to the ip of gcp
+
+# ingress layer 7 load balancer using native kubernetes
+# ingress es la ley
+# ingress se expone como nodeport o load balancer
+# se maneja todo desde el proveedor de la nube
+
+# ingress controller solution
+
+# ingress resource configuration
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-ingress-controller
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx-ingress
+  template:
+    metadata:
+      labels:
+        app: nginx-ingress
+    spec:
+      containers:
+      - name: nginx-ingress-controller
+        image: quay.io/kubernetes-ingress-controller/ngingx-ingress-controller:0.21.0
+      args:
+        - /nginx-ingress-controller
+        - --configmap=$(POD_NAMESPACE)/ngingx-configuration
+      env:
+        - name: POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        - name: POD_NAMESPACE 
+          valueFrom: 
+            fieldRef:
+              fieldPath: metadata.namespace
+      ports:
+        - name: http
+          containerPort: 80
+        - name: https
+          containerPort: 443

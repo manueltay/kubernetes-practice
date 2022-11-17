@@ -1,0 +1,26 @@
+# kubectl rollout status deployment/myapp-deployment
+
+# kubectl rollout history deployment/myapp-deployment
+
+# kubectl rollout undo deployment/myapp-deployment
+
+# recreate se vuela todo y lo vuelve a subir
+
+# rolling update baja una por una y sube una por una esta es DEFAULT
+
+## master $ kubectl create deployment nginx --image=nginx:1.16
+# deployment.apps/nginx created
+ 
+# master $ kubectl rollout status deployment nginx
+# Waiting for deployment "nginx" rollout to finish: 0 of 1 updated replicas are available...
+# deployment "nginx" successfully rolled out
+ 
+# master $
+ 
+ 
+# master $ kubectl rollout history deployment nginx
+# deployment.extensions/nginx
+# REVISION CHANGE-CAUSE
+# 1     <none>
+ 
+# master $

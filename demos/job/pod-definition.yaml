@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myapp-pod
+  labels: 
+    app: myapp
+    
+spec:
+  containers:
+    - name: math-add
+      image: ubuntu
+      command: ["expr","3","+","2"]
+  restartPolicy: Never
+

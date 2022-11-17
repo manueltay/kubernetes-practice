@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Namespace
+metadata: 
+  name: dev
+
+# k create -f namespace-dev.yml
+
+# k create namespace dev
+
+# k get pods --namespace=dev
+
+# k config set-context --namespace=dev 
+
+# db-server .dev .svc .cluster.local
+# nombre   ns    service   nombre dentro

@@ -1,0 +1,46 @@
+Creación de pods
+
+1. k run nginx-pod --image=nginx:alpine --dry-run=client -o yaml > pod.yaml
+2. k apply -f pod.yaml 
+3. k run redis --image=redis:alpine --dry-run=client -oyaml > redis.yaml
+
+4. k run custom-nginx --image=nginx --expose=true --port="8080"
+
+5. k run httpd --image=httpd:alpine 
+ 
+
+Creación de services
+
+1. kubectl create service clusterip --tcp=6379:6379 --dry-run -o yaml > service.yaml
+
+2. k create service clusterip httpd --tcp=80:80
+
+Deployments
+
+1. kubectl create deployment webapp --image=kodekloud/webapp-color -r=3 --dry-run=client -o yaml > deployment.yaml
+
+2. k create -n=dev-ns deployment redis-deploy --image=redis -r=2
+
+Namespaces
+
+1. k create ns dev-ns
+
+Solución
+
+kubcetl run nginx-pod --image=nginx:alpine
+
+kubectl run redis --image=redis:alpine --labels="tier=db"
+
+kubectl expose pod redis --port 6379 --name redis-service
+
+kubectl create deployment webapp --image=kodekloud/webapp-color -r=3
+
+kubectl run custom-nginx --image=nginx --port=8080
+
+kubectl create ns dev-ns
+
+kubectl create deployment redis-deploy --image=redis -r=2 -n dev-ns
+
+kubectl run httpd --image=httpd:alpine --port=80 
+
+kubectl run httpd --image=httpd:alpine --port=80 --expose=true
